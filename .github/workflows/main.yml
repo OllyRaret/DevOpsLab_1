@@ -33,7 +33,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: log
-          path: build/logStyle.txt
+          path: logStyle.txt
       
   build:
     needs: code_analyse
