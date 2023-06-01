@@ -1,5 +1,4 @@
 pygame
-random
 math
 os
 numpy
