@@ -24,9 +24,9 @@ jobs:
       - name: Build App
         uses: Nuitka/Nuitka-Action@main
         with:
-          nuitka-version: main
+          nuitka-version: Latest
           script-name: main.py
-          onefile: true
+          standalone: true
       
       - name: Upload Exe
         uses: actions/upload-artifact@v3
