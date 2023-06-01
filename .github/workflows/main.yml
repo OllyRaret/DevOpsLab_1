@@ -10,18 +10,18 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Install Linters
+      - name: Install Flake8 and PySnooper
         run: |
           pip install flake8
-          pip install cProfile
+          pip install pysnooper
       
       - name: Code Style Check
         run: |
           flake8 main.py
-          
+      
       - name: Runtime Performance Check
         run: |
-          python -m cProfile main.py
+          python -m pysnooper main.py
           
   build:
     runs-on: windows-latest
