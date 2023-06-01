@@ -6,6 +6,26 @@ on:
       - main
       
 jobs:
+  code_analyse:
+    runs-on: windows-latest
+    
+    steps:
+      - name: Install Linters
+        run: |
+          pip install pylint
+          pip install flake8
+          pip install cProfile
+          pip install py-spy
+      
+      - name: Code Analysis & Style Check
+        run: |
+          pylint main.py
+          flake8 main.py
+          
+      - name: Runtime Analysis with cProfile
+        run: |
+          python -m cProfile main.py
+          
   build:
     runs-on: windows-latest
     
@@ -20,7 +40,7 @@ jobs:
       
       - name: Install Requirements
         run: pip install -r requirements.txt
-        
+
       - name: Build App
         uses: Nuitka/Nuitka-Action@main
         with:
@@ -50,7 +70,7 @@ jobs:
           
       - name: ls 
         run: ls -la 
-      
+          
       - name: Send Telegram message
         uses: appleboy/telegram-action@master
         with:
@@ -58,3 +78,5 @@ jobs:
           token: ${{ secrets.TELEGRAM_TOKEN}}
           message: uploaded artifacts
           document: main.7z
+      
+   
