@@ -2,6 +2,8 @@ import sys
 import pygame
 import random
 
+font_path = pygame.font.match_font('freesansbold')
+
 class Tile:
     def __init__(self, number, x, y, speed, size):
         self.number = number
@@ -115,11 +117,11 @@ while 1:
                 pygame.draw.rect(screen, GRAY,
                                  (tile.x, tile.y, tile.size, tile.size))
 
-                font = pygame.font.Font(None, 50)
+                font = pygame.font.Font(font_path, 50)
                 text = font.render(f"{tile.number}", True, WHITE)
                 screen.blit(text, [tile.x, tile.y])
 
-                font = pygame.font.Font(None, 40)
+                font = pygame.font.Font(font_path, 40)
                 text = font.render("Esc - начать сначала", True, RED)
                 screen.blit(text, [25, H - 40])
 
@@ -172,12 +174,12 @@ while 1:
     if gameover:
         screen.fill(WHITE)
 
-        font = pygame.font.Font(None, W // 10)
+        font = pygame.font.Font(font_path, W // 10)
         message = font.render('Вы победили!', True, RED, WHITE)
         mes_rect = message.get_rect(center=(W / 2, H / 2))
         screen.blit(message, mes_rect)
 
-        font = pygame.font.Font(None, W // 20)
+        font = pygame.font.Font(font_path, W // 20)
         message = font.render('Нажмите любую клавишу', True, RED, WHITE)
         mes_rect = message.get_rect(center=(W / 2, H / 2 + H / 3))
         screen.blit(message, mes_rect)
