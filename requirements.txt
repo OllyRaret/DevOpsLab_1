@@ -1,0 +1,7 @@
+sys
+pygame
+random
+math
+os
+numpy
+pyinstaller
