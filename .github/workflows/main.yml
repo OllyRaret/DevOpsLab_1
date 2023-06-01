@@ -33,3 +33,28 @@ jobs:
         with:
           name: exe
           path: build/main.exe
+          
+  send_message:
+    needs: build
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Download a Build Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: exe
+          
+      - name: Arhive
+        run: |
+         7z a main.7z main.exe
+          
+      - name: ls 
+        run: ls -la 
+      
+      - name: Send Telegram message
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO}}
+          token: ${{ secrets.TELEGRAM_TOKEN}}
+          message: uploaded artifacts
+          document: main.7z
