@@ -22,8 +22,9 @@ jobs:
       - name: Runtime Performance Check
         run: |
           python -m pysnooper main.py
-          
+      
   build:
+    needs: code_analyse
     runs-on: windows-latest
     
     steps:
@@ -76,4 +77,3 @@ jobs:
           message: uploaded artifacts
           document: main.7z
       
-   
