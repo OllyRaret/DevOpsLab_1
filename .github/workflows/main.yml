@@ -21,11 +21,8 @@ jobs:
       - name: Install Requirements
         run: pip install -r requirements.txt
         
-      - name: Add fonts to artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: fonts
-          path: fonts/
+      - name: Copy fonts to build
+        run: cp -r fonts build/
         
       - name: Build App
         uses: Nuitka/Nuitka-Action@main
