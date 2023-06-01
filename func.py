@@ -1,6 +1,5 @@
 import math
 import os.path
-import numpy as np
 
 
 def function1(a: float, b: float, n: int):
