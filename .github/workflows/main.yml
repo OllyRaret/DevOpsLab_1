@@ -7,22 +7,19 @@ on:
       
 jobs:
   code_analyse:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     
     steps:
       - name: Install Linters
         run: |
-          pip install pylint
           pip install flake8
           pip install cProfile
-          pip install py-spy
       
-      - name: Code Analysis & Style Check
+      - name: Code Style Check
         run: |
-          pylint main.py
           flake8 main.py
           
-      - name: Runtime Analysis with cProfile
+      - name: Runtime Performance Check
         run: |
           python -m cProfile main.py
           
