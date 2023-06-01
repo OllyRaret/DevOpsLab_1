@@ -28,7 +28,7 @@ jobs:
       
       - name: Code Style Check
         run: |
-          flake8 --max-line-length=200 main.py --logfile=logStyle.txt
+          flake8 --max-line-length=200 main.py 
           
       
       - name: Runtime Performance Check
