@@ -1,8 +1,6 @@
 import sys
-
 import pygame
 import random
-
 
 class Tile:
     def __init__(self, number, x, y, speed, size):
@@ -90,12 +88,6 @@ while 1:
     if not gameover:
         restart = False
         numbers = [[0 for j in range(n)] for i in range(n)]
-
-        # num = 1
-        # for i in range(n):
-        #     for j in range(n):
-        #         numbers[i][j] = num
-        #         num += 1
 
         numbers = generateNumbers(numbers, n)
 
