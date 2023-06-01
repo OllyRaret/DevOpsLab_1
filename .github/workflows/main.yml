@@ -24,22 +24,26 @@ jobs:
       - name: Install Flake8 and PySnooper
         run: |
           pip install flake8
-          pip install pysnooper
       
       - name: Code Style Check
         run: |
-          flake8 --max-line-length=200 main.py 
-          
-      
-      - name: Runtime Performance Check
-        run: |
-          python -m pysnooper main.py --logfile=logRuntime.txt
+          flake8 main.py 
       
   build:
-    needs: code_analyse
     runs-on: windows-latest
     
     steps:
+      - name: Repository
+        uses: actions/checkout@v2
+        
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      
+      - name: Install Requirements
+        run: pip install -r requirements.txt
+        
       - name: Build App
         uses: Nuitka/Nuitka-Action@main
         with:
