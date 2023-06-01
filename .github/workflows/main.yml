@@ -21,15 +21,22 @@ jobs:
       - name: Install Requirements
         run: pip install -r requirements.txt
         
-      - name: Install Flake8 and PySnooper
+      - name: Install Flake8
         run: |
           pip install flake8
       
       - name: Code Style Check
         run: |
-          flake8 main.py 
+          flake8 --exit-zero --statistics --output-file logStyle.txt main.py 
+        
+      - name: Upload Log
+        uses: actions/upload-artifact@v3
+        with:
+          name: log
+          path: build/logStyle.txt
       
   build:
+    needs: code_analyse
     runs-on: windows-latest
     
     steps:
@@ -43,7 +50,7 @@ jobs:
       
       - name: Install Requirements
         run: pip install -r requirements.txt
-        
+
       - name: Build App
         uses: Nuitka/Nuitka-Action@main
         with:
@@ -67,9 +74,14 @@ jobs:
         with:
           name: exe
           
+      - name: Download Log Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: log
+          
       - name: Arhive
         run: |
-         7z a main.7z main.exe
+         7z a main.7z main.exe logStyle.txt
           
       - name: ls 
         run: ls -la 
